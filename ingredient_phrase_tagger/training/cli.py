@@ -166,6 +166,7 @@ class Cli(object):
         (options, args) = opts.parse_args(argv)
         return options
 
+
 def _coerce_values_to_floats(row):
     for key in row:
         try:
