@@ -26,8 +26,13 @@ class Cli(object):
         with open(self.opts.data_path) as csv_file:
             csv_reader = csv.DictReader(csv_file)
             for index, row in enumerate(csv_reader):
-                if index < start or index > end:
+                if index < start or index >= end:
                     continue
+                for key in row:
+                    try:
+                        row[key] = float(row[key])
+                    except ValueError:
+                        pass
                 try:
                     # extract the display name
                     display_input = utils.cleanUnicodeFractions(row["input"])
