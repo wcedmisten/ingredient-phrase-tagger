@@ -1,5 +1,9 @@
 ---
 sudo: required
+dist: trusty
+language: python
+python:
+  - "2.7"
 services: docker
 script: ./docker_build
 after_success:
