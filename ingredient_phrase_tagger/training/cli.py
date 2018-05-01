@@ -1,7 +1,7 @@
+import csv
 import re
 import decimal
 import optparse
-import pandas as pd
 
 import utils
 
@@ -20,34 +20,33 @@ class Cli(object):
         Generates training data in the CRF++ format for the ingredient
         tagging task
         """
-        df = pd.read_csv(self.opts.data_path)
-        df = df.fillna("")
-
         start = int(offset)
         end = int(offset) + int(count)
 
-        df_slice = df.iloc[start:end]
+        with open(self.opts.data_path) as csv_file:
+            csv_reader = csv.DictReader(csv_file)
+            for index, row in enumerate(csv_reader):
+                if index < start or index > end:
+                    continue
+                try:
+                    # extract the display name
+                    display_input = utils.cleanUnicodeFractions(row["input"])
+                    tokens = utils.tokenize(display_input)
+                    del (row["input"])
 
-        for index, row in df_slice.iterrows():
-            try:
-                # extract the display name
-                display_input = utils.cleanUnicodeFractions(row["input"])
-                tokens = utils.tokenize(display_input)
-                del (row["input"])
+                    rowData = self.addPrefixes(
+                        [(t, self.matchUp(t, row)) for t in tokens])
 
-                rowData = self.addPrefixes(
-                    [(t, self.matchUp(t, row)) for t in tokens])
+                    for i, (token, tags) in enumerate(rowData):
+                        features = utils.getFeatures(token, i + 1, tokens)
+                        print utils.joinLine(
+                            [token] + features + [self.bestTag(tags)])
 
-                for i, (token, tags) in enumerate(rowData):
-                    features = utils.getFeatures(token, i + 1, tokens)
-                    print utils.joinLine(
-                        [token] + features + [self.bestTag(tags)])
+                # ToDo: deal with this
+                except UnicodeDecodeError:
+                    pass
 
-            # ToDo: deal with this
-            except UnicodeDecodeError:
-                pass
-
-            print
+                print
 
     def parseNumbers(self, s):
         """
