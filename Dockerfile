@@ -10,7 +10,8 @@ LABEL org.label-schema.build-date=$BUILD_DATE \
       org.label-schema.vcs-ref=$VCS_REF \
       org.label-schema.schema-version="1.0.0-rc1"
 
-RUN apt-get install -y python2.7 python-pip
+RUN apt-get update -y && \
+    apt-get install -y python2.7 python-pip
 
 ADD . /ingredient-phrase-tagger
 WORKDIR /ingredient-phrase-tagger
