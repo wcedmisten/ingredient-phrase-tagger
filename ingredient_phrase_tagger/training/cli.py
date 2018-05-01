@@ -28,11 +28,9 @@ class Cli(object):
             for index, row in enumerate(csv_reader):
                 if index < start or index >= end:
                     continue
-                for key in row:
-                    try:
-                        row[key] = float(row[key])
-                    except ValueError:
-                        pass
+
+                _coerce_values_to_floats(row)
+
                 try:
                     # extract the display name
                     display_input = utils.cleanUnicodeFractions(row["input"])
@@ -167,3 +165,10 @@ class Cli(object):
 
         (options, args) = opts.parse_args(argv)
         return options
+
+def _coerce_values_to_floats(row):
+    for key in row:
+        try:
+            row[key] = float(row[key])
+        except ValueError:
+            pass
