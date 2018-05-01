@@ -18,6 +18,9 @@ CRF_TRAINING_FILE="${OUTPUT_DIR}/training_data.crf"
 CRF_TESTING_FILE="${OUTPUT_DIR}/testing_data.crf"
 
 CRF_LEARN_TEMPLATE=template_file
+# This needs to be explicit so that there is consistent training between
+# different machines.
+CRF_TRAINING_THREADS=2
 CRF_MODEL_FILE="${OUTPUT_DIR}/crf_model"
 
 TESTING_OUTPUT_FILE="${OUTPUT_DIR}/testing_output"
@@ -42,7 +45,9 @@ bin/generate_data \
 
 diff --context=2 "$GOLDEN_CRF_TESTING_FILE" "$CRF_TESTING_FILE"
 
-crf_learn "$CRF_LEARN_TEMPLATE" "$CRF_TESTING_FILE" "$CRF_MODEL_FILE"
+crf_learn \
+  --thread="$CRF_TRAINING_THREADS" \
+  "$CRF_LEARN_TEMPLATE" "$CRF_TESTING_FILE" "$CRF_MODEL_FILE"
 
 crf_test \
   --model="$CRF_MODEL_FILE" \
