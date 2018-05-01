@@ -10,5 +10,5 @@ after_success:
   - pip install pyyaml coveralls
   # Fix paths in .coverage so they match Coveralls' expectations of Travis'
   # paths.
-  - sed -i "s@\"/app/@\"${PWD}/@g" .coverage
+  - sed -i "s@\"/ingredient-phrase-tagger/@\"${PWD}/@g" .coverage
   - coveralls
