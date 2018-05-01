@@ -29,7 +29,7 @@ class Cli(object):
                 if index < start or index >= end:
                     continue
 
-                _coerce_values_to_floats(row)
+                _coerce_values_to_numbers(row)
 
                 try:
                     # extract the display name
@@ -167,9 +167,12 @@ class Cli(object):
         return options
 
 
-def _coerce_values_to_floats(row):
+def _coerce_values_to_numbers(row):
     for key in row:
-        try:
-            row[key] = float(row[key])
-        except ValueError:
-            pass
+        if key == 'index':
+            row[key] = int(row[key])
+        else:
+            try:
+                row[key] = float(row[key])
+            except ValueError:
+                pass
