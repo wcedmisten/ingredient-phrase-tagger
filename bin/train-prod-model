@@ -5,9 +5,6 @@
 # Example
 #  $ mkdir ~/models
 #  $ ./bin/train-prod-model ~/models
-#
-# Trains a new model using a known set of labelled data then verifies that all
-# generated outputs match the golden outputs.
 
 # Exit build script on first failure
 set -e

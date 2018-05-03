@@ -1,13 +1,10 @@
 #!/bin/bash
 
-# Builds a new model using production settings.
+# Builds a new model within a docker container using production settings.
 #
 # Example
 #  $ mkdir ~/models
 #  $ ./docker_train_prod_model ~/models
-#
-# Trains a new model using a known set of labelled data then verifies that all
-# generated outputs match the golden outputs.
 
 # Exit build script on first failure
 set -e
