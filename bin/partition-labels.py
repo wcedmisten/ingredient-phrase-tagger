@@ -13,6 +13,7 @@ def main(args):
         training_writer = labelled_data.Writer(training_file)
         testing_writer = labelled_data.Writer(testing_file)
 
+        # TODO: Add a shuffle step.
         partitioner.split_labels(label_reader, training_writer, testing_writer,
                                  args.training_fraction, args.max_labels)
 
