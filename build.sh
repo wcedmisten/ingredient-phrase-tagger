@@ -25,7 +25,9 @@ bin/generate_data \
   --count=$COUNT_TEST \
   --offset=$COUNT_TRAIN > "$ACTUAL_CRF_TESTING_FILE"
 
-crf_learn template_file "$ACTUAL_CRF_TRAINING_FILE" "$ACTUAL_CRF_MODEL_FILE"
+crf_learn \
+  --thread=2 \
+  template_file "$ACTUAL_CRF_TRAINING_FILE" "$ACTUAL_CRF_MODEL_FILE"
 
 crf_test \
   -m "$ACTUAL_CRF_MODEL_FILE" \
