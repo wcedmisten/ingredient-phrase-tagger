@@ -7,6 +7,8 @@ source = ingredient_phrase_tagger
 parallel = True
 
 [paths]
+; the first path is the path on the local filesystem
+; the second path is the path as it appears within the Docker container
 source =
-  ingredient_phrase_tagger/       ; local path
-  /app/ingredient_phrase_tagger/  ; path within Docker container
+  ingredient_phrase_tagger/
+  /app/ingredient_phrase_tagger/
