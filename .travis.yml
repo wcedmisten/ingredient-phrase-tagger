@@ -9,4 +9,4 @@ script: ./docker_build
 after_success:
   - pip install pyyaml coveralls
   - docker cp ingredient-phrase-tagger-container:/ingredient-phrase-tagger/.coverage ./
-  - coveralls
+  - coveralls --base_dir /ingredient-phrase-tagger
