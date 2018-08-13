@@ -1,0 +1,9 @@
+# .coveragerc to control coverage.py
+[run]
+source = ingredient_phrase_tagger
+parallel = True
+
+[paths]
+source =
+  ingredient_phrase_tagger/
+  /app/ingredient_phrase_tagger/
