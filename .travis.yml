@@ -8,6 +8,6 @@ services: docker
 script: ./docker_build
 after_success:
   - pip install pyyaml coveralls
-  - docker cp ingredient-phrase-tagger-container:$(docker exec -it ingredient-phrase-tagger-container bash -c "ls -a .coverage.*") ./
+  - docker cp ingredient-phrase-tagger-container:/app/$(docker exec -it ingredient-phrase-tagger-container bash -c "ls -a .coverage.*" | tr -d '\r') ./
   - coverage combine
   - coveralls
