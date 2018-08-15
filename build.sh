@@ -21,8 +21,9 @@ yapf \
 # Run static analysis for Python bugs/cruft.
 pyflakes bin/ ingredient_phrase_tagger/
 
-# Run unit tests.
-python -m unittest discover
+# Run unit tests and calculate code coverage.
+coverage run \
+  -m unittest discover
 
 # Run E2E tests.
 bash ./test_e2e
