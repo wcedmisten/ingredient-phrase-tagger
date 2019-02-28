@@ -20,4 +20,6 @@ docker run \
   --name "$CONTAINER_NAME" \
   "$IMAGE_NAME"
 
-docker exec "$CONTAINER_NAME" ./test_e2e
+docker exec "$CONTAINER_NAME" pip install -r dev_requirements.txt
+
+docker exec "$CONTAINER_NAME" ./build.sh

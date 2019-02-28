@@ -19,5 +19,3 @@ bin/convert-to-json.py "$INTERMEDIATE_RESULTS" > "$ACTUAL_RESULTS"
 diff --context=2 "$GOLDEN_RESULTS" "$ACTUAL_RESULTS"
 
 rm -rf "$OUTPUT_DIR"
-
-echo "End-to-end test: SUCCESS!"
