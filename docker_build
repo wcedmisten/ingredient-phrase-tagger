@@ -1,0 +1,23 @@
+#!/bin/bash
+
+# Exit on first failing command.
+set -e
+# Echo commands to console.
+set -x
+
+IMAGE_NAME="parser-image"
+CONTAINER_NAME="parser"
+
+docker rm -f "$CONTAINER_NAME" || true
+
+docker build \
+  --tag "$IMAGE_NAME" \
+  .
+
+docker run \
+  --tty \
+  --detach \
+  --name "$CONTAINER_NAME" \
+  "$IMAGE_NAME"
+
+docker exec "$CONTAINER_NAME" ./test_e2e

@@ -1,0 +1,23 @@
+#!/bin/bash
+
+# Exit build script on first failure
+set -e
+
+# Echo commands to stdout.
+set -x
+
+INPUT_FILE="tests/e2e-input.txt"
+GOLDEN_RESULTS="tests/golden/results.json"
+
+OUTPUT_DIR=$(mktemp -d)
+INTERMEDIATE_RESULTS="${OUTPUT_DIR}/results.txt"
+ACTUAL_RESULTS="${OUTPUT_DIR}/results.json"
+
+bin/parse-ingredients.py "$INPUT_FILE" > "$INTERMEDIATE_RESULTS"
+bin/convert-to-json.py "$INTERMEDIATE_RESULTS" > "$ACTUAL_RESULTS"
+
+diff --context=2 "$GOLDEN_RESULTS" "$ACTUAL_RESULTS"
+
+rm -rf "$OUTPUT_DIR"
+
+echo "End-to-end test: SUCCESS!"
