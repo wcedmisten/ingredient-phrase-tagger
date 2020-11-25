@@ -181,4 +181,4 @@ input,name,qty,range_end,unit,comment
         self.assertMultiLineEqual(
             (u'input,name,qty,range_end,unit,comment\n'
              u'2 jalape\xc3\xb1os,jalape\xc3\xb1os,2.0,0.0,,\n'),
-            mock_file.getvalue().decode('utf-8'))
+            mock_file.getvalue())

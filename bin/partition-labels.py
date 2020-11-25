@@ -1,4 +1,4 @@
-#!/usr/bin/python2
+#!/usr/bin/python3
 import argparse
 
 from ingredient_phrase_tagger.training import labelled_data
