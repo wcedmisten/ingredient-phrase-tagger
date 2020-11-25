@@ -15,7 +15,7 @@ def _exec_crf_test(input_text, model_path):
         input_file.flush()
         return subprocess.check_output(
             ['crf_test', '--verbose=1', '--model', model_path,
-             input_file.name]).decode('utf-8')
+             input_file.name])
 
 
 def _convert_crf_output_to_json(crf_output):
