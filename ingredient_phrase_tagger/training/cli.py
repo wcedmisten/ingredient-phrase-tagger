@@ -1,7 +1,7 @@
 import optparse
 
-import labelled_data
-import translator
+from ingredient_phrase_tagger.training import labelled_data
+from ingredient_phrase_tagger.training import translator
 
 
 class Cli(object):
