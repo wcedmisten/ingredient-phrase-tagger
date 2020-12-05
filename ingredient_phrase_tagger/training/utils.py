@@ -319,4 +319,4 @@ def tokenize(s):
         s = s.replace(unit + '/', unit + ' ')
         s = s.replace(unit + 's/', unit + 's ')
 
-    return filter(None, re.split(r'([,\(\)])?\s*', clumpFractions(s)))
+    return list(filter(None, re.split(r'([,\(\)])?\s*', clumpFractions(s))))
