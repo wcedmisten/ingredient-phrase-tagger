@@ -8,7 +8,7 @@ if len(sys.argv) < 2:
 filename = sys.argv[1]
 
 # load CRF++ output for test data
-with open(filename, 'r') as file:
+with open(filename, 'r', encoding='utf-8') as file:
     sentences = file.read().split('\n\n')
 
 total_sentences = len(sentences)

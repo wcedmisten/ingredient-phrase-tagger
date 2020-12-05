@@ -67,7 +67,7 @@ On OSX:
 
 ```bash
 brew install crf++
-python setup.py install
+python3 setup.py install
 ```
 
 Docker:

@@ -67,4 +67,4 @@ crf_test \
   --model="$CRF_MODEL_FILE" \
   "$CRF_TESTING_FILE" > "$TESTING_OUTPUT_FILE"
 
-python bin/evaluate.py "$TESTING_OUTPUT_FILE" > "$EVAL_OUTPUT_FILE"
+python3 bin/evaluate.py "$TESTING_OUTPUT_FILE" > "$EVAL_OUTPUT_FILE"

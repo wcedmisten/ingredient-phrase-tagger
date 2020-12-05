@@ -3,7 +3,7 @@ sudo: required
 dist: trusty
 language: python
 python:
-  - "3.9"
+  - "3"
 services: docker
 script: ./docker_build
 after_success:
