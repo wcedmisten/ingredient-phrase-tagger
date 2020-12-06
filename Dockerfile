@@ -13,14 +13,14 @@ LABEL org.label-schema.build-date=$BUILD_DATE \
 RUN apt-get update -y && \
     apt-get install -y git python3.9 python3-setuptools python3-pip
 
+ADD . /app
+WORKDIR /app
+
+RUN python3 setup.py install
+
 # Clean up.
 RUN rm -rf /var/lib/apt/lists/* && \
     rm -Rf /usr/share/doc && \
     rm -Rf /usr/share/man && \
     apt-get autoremove -y && \
     apt-get clean
-
-ADD . /app
-WORKDIR /app
-
-RUN python3 setup.py install
