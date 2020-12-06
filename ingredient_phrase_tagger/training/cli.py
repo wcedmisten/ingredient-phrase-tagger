@@ -18,8 +18,8 @@ class Cli(object):
         with open(self.opts.data_path, encoding='utf-8') as data_file:
             data_reader = labelled_data.Reader(data_file)
             for row in data_reader:
-                # write the utf-8 encoded data directly to stdout instead of using print
-                # because print() will output a bytestring like `b"string"`
+                # Write the utf-8 encoded data directly to stdout instead of using print
+                # because print() will output a bytestring like `b"string"`.
                 sys.stdout.buffer.write(
                     translator.translate_row(row).encode('utf-8'))
                 sys.stdout.buffer.write(b'\n')

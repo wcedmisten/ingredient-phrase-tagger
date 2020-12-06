@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 import re
 
 
@@ -11,6 +10,7 @@ def clumpFractions(s):
         clumpFractions("aaa 1 2/3 bbb")
         # => "aaa 1$2/3 bbb"
     """
+    
     return re.sub(r'(\d+)\s+(\d)/(\d)', r'\1$\2/\3', s)
 
 

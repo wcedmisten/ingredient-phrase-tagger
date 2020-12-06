@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 import re
 
 from ingredient_phrase_tagger.training import tokenizer
