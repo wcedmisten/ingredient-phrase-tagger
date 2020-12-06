@@ -47,7 +47,8 @@ print()
 print('Sentence-Level Stats:')
 print('\tcorrect: ', correct_sentences)
 print('\ttotal: ', total_sentences)
-print('\t% correct: ', "{:.2f}".format(100 * (correct_sentences / total_sentences)))
+print('\t% correct: ',
+      "{:.2f}".format(100 * (correct_sentences / total_sentences)))
 
 print()
 print('Word-Level Stats:')
