@@ -54,10 +54,12 @@ bin/partition-labels.py \
   --max-labels="$LABELLED_EXAMPLE_COUNT"
 
 bin/generate_data \
-  --data-path="$TRAINING_LABELS_FILE" > "$CRF_TRAINING_FILE"
+  --data-path="$TRAINING_LABELS_FILE" \
+  --output-path="$CRF_TRAINING_FILE"
 
 bin/generate_data \
-  --data-path="$TESTING_LABELS_FILE" > "$CRF_TESTING_FILE"
+  --data-path="$TESTING_LABELS_FILE" \
+  --output-path="$CRF_TESTING_FILE"
 
 crf_learn \
   --thread="$CRF_TRAINING_THREADS" \
