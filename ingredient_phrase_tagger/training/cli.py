@@ -22,6 +22,7 @@ class Cli(object):
                 # because print() will output a bytestring like `b"string"`
                 sys.stdout.buffer.write(
                     translator.translate_row(row).encode('utf-8'))
+                sys.stdout.buffer.write(b'\n')
 
     def _parse_args(self, argv):
         """

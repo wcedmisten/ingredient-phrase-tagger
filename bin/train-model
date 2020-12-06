@@ -56,8 +56,6 @@ bin/partition-labels.py \
 bin/generate_data \
   --data-path="$TRAINING_LABELS_FILE" > "$CRF_TRAINING_FILE"
 
-cat $CRF_TRAINING_FILE| head -10
-
 bin/generate_data \
   --data-path="$TESTING_LABELS_FILE" > "$CRF_TESTING_FILE"
 
