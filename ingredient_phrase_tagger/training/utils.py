@@ -295,6 +295,7 @@ def export_data(lines):
         output.append('')
     return '\n'.join(output)
 
+
 def tokenize(s):
     """
     Tokenize on parenthesis, punctuation, spaces and American units followed by a slash.

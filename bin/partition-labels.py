@@ -21,27 +21,23 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(
         prog='ingredient-phrase-tagger: Label Partitioner',
         formatter_class=argparse.ArgumentDefaultsHelpFormatter)
-    parser.add_argument(
-        '--label-path',
-        help='Path to input CSV of labelled ingredients',
-        required=True)
-    parser.add_argument(
-        '--training-path',
-        help='Path to output path to write training data',
-        required=True)
-    parser.add_argument(
-        '--testing-path',
-        help='Path to output path to write testing data',
-        required=True)
+    parser.add_argument('--label-path',
+                        help='Path to input CSV of labelled ingredients',
+                        required=True)
+    parser.add_argument('--training-path',
+                        help='Path to output path to write training data',
+                        required=True)
+    parser.add_argument('--testing-path',
+                        help='Path to output path to write testing data',
+                        required=True)
     parser.add_argument(
         '--training-fraction',
         type=float,
         default=0.9,
         help=('Percentage of label set to use for training (remainder is '
               'reserved for testing)'))
-    parser.add_argument(
-        '--max-labels',
-        help='Maximum number of labels to read from label-path',
-        default=0,
-        type=int)
+    parser.add_argument('--max-labels',
+                        help='Maximum number of labels to read from label-path',
+                        default=0,
+                        type=int)
     main(parser.parse_args())

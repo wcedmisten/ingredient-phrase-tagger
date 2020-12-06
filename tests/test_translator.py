@@ -19,12 +19,13 @@ class TranslatorTest(unittest.TestCase):
             'comment': '',
         }
 
-        self.assertMultiLineEqual("""
+        self.assertMultiLineEqual(
+            """
 2\tI1\tL4\tNoCAP\tNoPAREN\tB-QTY
 cups\tI2\tL4\tNoCAP\tNoPAREN\tB-UNIT
 flour\tI3\tL4\tNoCAP\tNoPAREN\tB-NAME
 """.strip(),
-                                  translator.translate_row(row).strip())
+            translator.translate_row(row).strip())
 
     def test_translates_row_with_simple_fraction(self):
         row = {
@@ -37,13 +38,14 @@ flour\tI3\tL4\tNoCAP\tNoPAREN\tB-NAME
             'comment': '',
         }
 
-        self.assertMultiLineEqual("""
+        self.assertMultiLineEqual(
+            """
 1/2\tI1\tL8\tNoCAP\tNoPAREN\tB-QTY
 cup\tI2\tL8\tNoCAP\tNoPAREN\tB-UNIT
 yellow\tI3\tL8\tNoCAP\tNoPAREN\tB-NAME
 cornmeal\tI4\tL8\tNoCAP\tNoPAREN\tI-NAME
 """.strip(),
-                                  translator.translate_row(row).strip())
+            translator.translate_row(row).strip())
 
     def test_translates_row_with_complex_fraction(self):
         row = {
@@ -56,12 +58,13 @@ cornmeal\tI4\tL8\tNoCAP\tNoPAREN\tI-NAME
             'comment': '',
         }
 
-        self.assertMultiLineEqual("""
+        self.assertMultiLineEqual(
+            """
 1$1/2\tI1\tL4\tNoCAP\tNoPAREN\tB-QTY
 teaspoons\tI2\tL4\tNoCAP\tNoPAREN\tB-UNIT
 salt\tI3\tL4\tNoCAP\tNoPAREN\tB-NAME
 """.strip(),
-                                  translator.translate_row(row).strip())
+            translator.translate_row(row).strip())
 
     def test_translates_row_with_non_ascii_characters(self):
         row = {
@@ -94,7 +97,8 @@ minced\tI5\tL8\tNoCAP\tNoPAREN\tB-COMMENT
             'comment': 'split lengthwise, seeds scraped',
         }
 
-        self.assertMultiLineEqual("""
+        self.assertMultiLineEqual(
+            """
 Half\tI1\tL12\tYesCAP\tNoPAREN\tOTHER
 a\tI2\tL12\tNoCAP\tNoPAREN\tOTHER
 vanilla\tI3\tL12\tNoCAP\tNoPAREN\tB-NAME
@@ -106,27 +110,28 @@ lengthwise\tI7\tL12\tNoCAP\tNoPAREN\tI-COMMENT
 seeds\tI9\tL12\tNoCAP\tNoPAREN\tI-COMMENT
 scraped\tI10\tL12\tNoCAP\tNoPAREN\tI-COMMENT
 """.strip(),
-                                  translator.translate_row(row).strip())
+            translator.translate_row(row).strip())
 
     def test_translates_complex_row(self):
         row = {
             'index':
-            0,
+                0,
             'input': ('1 1/4 cups cooked and pureed fresh butternut squash, '
                       'or 1 10-ounce package frozen squash, defrosted'),
             'name':
-            'butternut squash',
+                'butternut squash',
             'qty':
-            1.25,
+                1.25,
             'range_end':
-            0.0,
+                0.0,
             'unit':
-            'cup',
+                'cup',
             'comment': ('cooked and pureed fresh, or 1 10-ounce package '
                         'frozen squash, defrosted'),
         }
 
-        self.assertMultiLineEqual("""
+        self.assertMultiLineEqual(
+            """
 1$1/4\tI1\tL20\tNoCAP\tNoPAREN\tB-QTY
 cups\tI2\tL20\tNoCAP\tNoPAREN\tB-UNIT
 cooked\tI3\tL20\tNoCAP\tNoPAREN\tB-COMMENT
@@ -145,27 +150,23 @@ squash\tI15\tL20\tNoCAP\tNoPAREN\tB-NAME
 ,\tI16\tL20\tNoCAP\tNoPAREN\tOTHER
 defrosted\tI17\tL20\tNoCAP\tNoPAREN\tI-COMMENT
 """.strip(),
-                                  translator.translate_row(row).strip())
+            translator.translate_row(row).strip())
 
     def test_translates_row_with_multiple_ingredients(self):
         row = {
-            'index':
-            16096,
+            'index': 16096,
             'input': ('4 to 6 tablespoons fresh lime juice, as needed, plus '
                       '4 to 6 slices of lime, for garnish'),
             'name': ('fresh lime juice, as needed, plus 4 to 6 slices of '
                      'lime, for garnish'),
-            'qty':
-            4.0,
-            'range_end':
-            6.0,
-            'unit':
-            'tablespoon',
-            'comment':
-            '',
+            'qty': 4.0,
+            'range_end': 6.0,
+            'unit': 'tablespoon',
+            'comment': '',
         }
 
-        self.assertMultiLineEqual("""
+        self.assertMultiLineEqual(
+            """
 4\tI1\tLX\tNoCAP\tNoPAREN\tB-NAME
 to\tI2\tLX\tNoCAP\tNoPAREN\tI-NAME
 6\tI3\tLX\tNoCAP\tNoPAREN\tI-NAME
@@ -188,4 +189,4 @@ lime\tI18\tLX\tNoCAP\tNoPAREN\tI-NAME
 for\tI20\tLX\tNoCAP\tNoPAREN\tI-NAME
 garnish\tI21\tLX\tNoCAP\tNoPAREN\tI-NAME
 """.strip(),
-                                  translator.translate_row(row).strip())
+            translator.translate_row(row).strip())

@@ -32,13 +32,13 @@ index,input,name,qty,range_end,unit,comment
             'input': ('2 1/2 pounds bell peppers (about 6 peppers in '
                       'assorted colors), cut into 2-inch chunks'),
             'qty':
-            2.5,
+                2.5,
             'unit':
-            'pound',
+                'pound',
             'name':
-            'bell peppers',
+                'bell peppers',
             'range_end':
-            0.0,
+                0.0,
             'comment': ('(about 6 peppers in assorted colors), cut into '
                         '2-inch chunks'),
         }], [r for r in reader])
@@ -46,8 +46,7 @@ index,input,name,qty,range_end,unit,comment
     def test_reads_file_with_utf8_encoding(self):
         mock_file = io.StringIO(
             ('index,input,name,qty,range_end,unit,comment\n'
-             '1,2 jalape\xc3\xb1os,jalape\xc3\xb1os,2.0,0.0,,,\n'
-            ))
+             '1,2 jalape\xc3\xb1os,jalape\xc3\xb1os,2.0,0.0,,,\n'))
         reader = labelled_data.Reader(mock_file)
         self.assertEqual([{
             'input': '2 jalape\xc3\xb1os',
@@ -64,14 +63,15 @@ index,input,name,qty,range_end,unit,comment
 77,3 bananas,bananas,3.0,,,
 """.strip())
         reader = labelled_data.Reader(mock_file)
-        self.assertEqual({
-            'input': '3 bananas',
-            'qty': 3.0,
-            'unit': '',
-            'name': 'bananas',
-            'comment': '',
-            'range_end': 0.0,
-        }, next(reader))
+        self.assertEqual(
+            {
+                'input': '3 bananas',
+                'qty': 3.0,
+                'unit': '',
+                'name': 'bananas',
+                'comment': '',
+                'range_end': 0.0,
+            }, next(reader))
 
     def test_raises_error_when_csv_does_not_have_required_columns(self):
         with self.assertRaises(labelled_data.InvalidHeaderError):
@@ -108,23 +108,24 @@ class WriterTest(unittest.TestCase):
             'input': ('2 1/2 pounds bell peppers (about 6 peppers in '
                       'assorted colors), cut into 2-inch chunks'),
             'qty':
-            2.5,
+                2.5,
             'unit':
-            'pound',
+                'pound',
             'name':
-            'bell peppers',
+                'bell peppers',
             'range_end':
-            0.0,
+                0.0,
             'comment': ('(about 6 peppers in assorted colors), cut into '
                         '2-inch chunks'),
         }])
-        self.assertMultiLineEqual("""
+        self.assertMultiLineEqual(
+            """
 input,name,qty,range_end,unit,comment
 4 to 6 large cloves garlic,garlic,4.0,6.0,clove,
 3 bananas,bananas,3.0,0.0,,
 "2 1/2 pounds bell peppers (about 6 peppers in assorted colors), cut into 2-inch chunks",bell peppers,2.5,0.0,pound,"(about 6 peppers in assorted colors), cut into 2-inch chunks"
 """.strip(),
-                                  mock_file.getvalue().strip())
+            mock_file.getvalue().strip())
 
     def test_writes_valid_rows_one_by_one(self):
         mock_file = io.StringIO()
@@ -149,23 +150,24 @@ input,name,qty,range_end,unit,comment
             'input': ('2 1/2 pounds bell peppers (about 6 peppers in '
                       'assorted colors), cut into 2-inch chunks'),
             'qty':
-            2.5,
+                2.5,
             'unit':
-            'pound',
+                'pound',
             'name':
-            'bell peppers',
+                'bell peppers',
             'range_end':
-            0.0,
+                0.0,
             'comment': ('(about 6 peppers in assorted colors), cut into '
                         '2-inch chunks'),
         })
-        self.assertMultiLineEqual("""
+        self.assertMultiLineEqual(
+            """
 input,name,qty,range_end,unit,comment
 4 to 6 large cloves garlic,garlic,4.0,6.0,clove,
 3 bananas,bananas,3.0,0.0,,
 "2 1/2 pounds bell peppers (about 6 peppers in assorted colors), cut into 2-inch chunks",bell peppers,2.5,0.0,pound,"(about 6 peppers in assorted colors), cut into 2-inch chunks"
 """.strip(),
-                                  mock_file.getvalue().strip())
+            mock_file.getvalue().strip())
 
     def test_writes_with_utf8_encoding(self):
         mock_file = io.StringIO()
