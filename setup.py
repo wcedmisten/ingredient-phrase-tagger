@@ -5,10 +5,6 @@ from setuptools import setup, find_packages
 
 import ingredient_phrase_tagger
 
-requires, extra = [], {}
-if sys.version_info >= (3,):
-    extra['use_2to3'] = True
-
 setup(
     name='ingredient_phrase_tagger',
     version='0.0.0.dev0',
@@ -17,7 +13,7 @@ setup(
     author='The New York Times Company',
     author_email='',
     license='Apache 2.0',
-    install_requires=requires,
+    install_requires=[],
+    python_requires='>=3',
     packages=find_packages(),
-    package_dir={'ingredient_phrase_tagger': 'ingredient_phrase_tagger'},
-    **extra)
+    package_dir={'ingredient_phrase_tagger': 'ingredient_phrase_tagger'})

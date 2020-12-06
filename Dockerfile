@@ -20,4 +20,4 @@ RUN apt-get update -y && \
 ADD . /app
 WORKDIR /app
 
-RUN python3 setup.py install
+RUN pip3 install .
