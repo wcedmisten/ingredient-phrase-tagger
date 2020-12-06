@@ -12,7 +12,9 @@ LABEL org.label-schema.build-date=$BUILD_DATE \
 
 RUN apt-get update -y && \
     apt-get install -y git python2.7 python-pip && \
-    rm -rf /var/lib/apt/lists/* &&
+    rm -Rf /usr/share/doc && \
+    rm -Rf /usr/share/man && \
+    rm -rf /var/lib/apt/lists/*
 
 ADD . /app
 WORKDIR /app
