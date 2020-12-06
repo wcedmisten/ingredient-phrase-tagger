@@ -1,0 +1,14 @@
+version: 2.1
+jobs:
+  build:
+    machine: true
+    steps:
+      - checkout
+      - run:
+          name: Do build checks
+          command: ./docker_build
+workflows:
+  version: 2
+  all-tests:
+    jobs:
+      - build
