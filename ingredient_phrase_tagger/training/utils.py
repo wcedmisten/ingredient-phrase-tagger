@@ -321,4 +321,7 @@ def tokenize(s):
         s = s.replace(unit + 's/', unit + 's ')
 
     # filter out the empty tokens
-    return [token for token in re.split(r'([,\(\)])?\s*', clumpFractions(s)) if token]
+    return [
+        token for token in re.split(r'([,\(\)])?\s*', clumpFractions(s))
+        if token
+    ]
