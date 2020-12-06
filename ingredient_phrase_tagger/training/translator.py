@@ -27,8 +27,8 @@ def translate_row(row):
     translated = ''
     for i, (token, tags) in enumerate(label_data):
         features = utils.getFeatures(token, i + 1, tokens)
-        translated += utils.joinLine([token] + features +
-                                     [_bestTag(tags)]) + '\n'
+        translated += utils.joinLine(
+            [token] + features + [_bestTag(tags)]) + '\n'
     return translated
 
 

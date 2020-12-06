@@ -26,9 +26,10 @@ class Cli(object):
 
         opts = optparse.OptionParser()
 
-        opts.add_option("--data-path",
-                        default="nyt-ingredients-snapshot-2015.csv",
-                        help="(%default)")
+        opts.add_option(
+            "--data-path",
+            default="nyt-ingredients-snapshot-2015.csv",
+            help="(%default)")
 
         (options, args) = opts.parse_args(argv)
         return options

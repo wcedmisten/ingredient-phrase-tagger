@@ -80,9 +80,8 @@ class Writer(object):
     """Writes labelled ingredient data to a CSV file."""
 
     def __init__(self, data_file):
-        self._csv_writer = csv.DictWriter(data_file,
-                                          fieldnames=_REQUIRED_COLUMNS,
-                                          lineterminator='\n')
+        self._csv_writer = csv.DictWriter(
+            data_file, fieldnames=_REQUIRED_COLUMNS, lineterminator='\n')
         self._csv_writer.writeheader()
 
     def writerow(self, row):

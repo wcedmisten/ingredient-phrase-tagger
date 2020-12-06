@@ -6,12 +6,10 @@ from ingredient_phrase_tagger.training import utils
 class TokenizerTest(unittest.TestCase):
 
     def test_tokenizer_splits_slash_separated_alternatives(self):
-        pairs = [
-            ('2 tablespoons/30 milliliters milk or cream',
-             ['2', 'tablespoons', '30', 'milliliters', 'milk', 'or', 'cream']),
-            ('2 1/2 cups/300 grams all-purpose flour',
-             ['2$1/2', 'cups', '300', 'grams', 'all-purpose', 'flour'])
-        ]
+        pairs = [('2 tablespoons/30 milliliters milk or cream', [
+            '2', 'tablespoons', '30', 'milliliters', 'milk', 'or', 'cream'
+        ]), ('2 1/2 cups/300 grams all-purpose flour',
+             ['2$1/2', 'cups', '300', 'grams', 'all-purpose', 'flour'])]
         for ingredient, tokens_expected in pairs:
             tokens_actual = utils.tokenize(ingredient)
             self.assertEqual(tokens_expected, tokens_actual)
