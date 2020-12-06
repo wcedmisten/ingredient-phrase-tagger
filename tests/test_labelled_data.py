@@ -78,7 +78,7 @@ index,input,name,qty,range_end,unit,comment
 index,input,UNEXPECTED_COLUMN,qty,range_end,unit,comment
 77,3 bananas,bananas,3.0,0.0,,
 """.strip())
-            labelled_data.Reader(mock_file).next()
+            next(labelled_data.Reader(mock_file))
 
 
 class WriterTest(unittest.TestCase):

@@ -266,7 +266,7 @@ def import_data(lines):
     # reassemble the output into a list of dicts.
     output = [
         dict([(k, smartJoin(tokens))
-              for k, tokens in ingredient.iteritems()])
+              for k, tokens in ingredient.items()])
         for ingredient in data
         if len(ingredient)
     ]
@@ -320,4 +320,5 @@ def tokenize(s):
         s = s.replace(unit + '/', unit + ' ')
         s = s.replace(unit + 's/', unit + 's ')
 
-    return list(filter(None, re.split(r'([,\(\)])?\s*', clumpFractions(s))))
+    # filter out the empty tokens
+    return [token for token in re.split(r'([,\(\)])?\s*', clumpFractions(s)) if token]
