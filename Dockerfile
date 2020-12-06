@@ -14,6 +14,7 @@ RUN apt-get update -y && \
     apt-get install -y git python2.7 python-pip && \
     rm -Rf /usr/share/doc && \
     rm -Rf /usr/share/man && \
+    apt-get autoremove -y && \
     rm -rf /var/lib/apt/lists/*
 
 ADD . /app
