@@ -1,4 +1,5 @@
 import optparse
+import sys
 
 from ingredient_phrase_tagger.training import labelled_data
 from ingredient_phrase_tagger.training import translator
@@ -17,7 +18,10 @@ class Cli(object):
         with open(self.opts.data_path, encoding='utf-8') as data_file:
             data_reader = labelled_data.Reader(data_file)
             for row in data_reader:
-                print(translator.translate_row(row))
+                # write the utf-8 encoded data directly to stdout instead of using print
+                # because print() will output a bytestring like `b"string"`
+                sys.stdout.buffer.write(
+                    translator.translate_row(row).encode('utf-8'))
 
     def _parse_args(self, argv):
         """
