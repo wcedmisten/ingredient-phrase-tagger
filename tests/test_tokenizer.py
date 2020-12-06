@@ -1,6 +1,6 @@
 import unittest
 
-from ingredient_phrase_tagger.training import utils
+from ingredient_phrase_tagger.training import tokenizer
 
 
 class TokenizerTest(unittest.TestCase):
@@ -11,7 +11,7 @@ class TokenizerTest(unittest.TestCase):
         ]), ('2 1/2 cups/300 grams all-purpose flour',
              ['2$1/2', 'cups', '300', 'grams', 'all-purpose', 'flour'])]
         for ingredient, tokens_expected in pairs:
-            tokens_actual = utils.tokenize(ingredient)
+            tokens_actual = tokenizer.tokenize(ingredient)
             self.assertEqual(tokens_expected, tokens_actual)
 
     def test_tokenizer_expands_unit_abbreviations(self):
@@ -22,5 +22,5 @@ class TokenizerTest(unittest.TestCase):
             ('15mL coconut oil', ['15', 'milliliters', 'coconut', 'oil']),
         ]
         for ingredient, tokens_expected in pairs:
-            tokens_actual = utils.tokenize(ingredient)
+            tokens_actual = tokenizer.tokenize(ingredient)
             self.assertEqual(tokens_expected, tokens_actual)
