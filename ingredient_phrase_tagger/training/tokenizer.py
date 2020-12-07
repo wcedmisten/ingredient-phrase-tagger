@@ -1,6 +1,17 @@
 import re
 
-import utils
+
+def clumpFractions(s):
+    """
+    Replaces the whitespace between the integer and fractional part of a quantity
+    with a dollar sign, so it's interpreted as a single token. The rest of the
+    string is left alone.
+
+        clumpFractions("aaa 1 2/3 bbb")
+        # => "aaa 1$2/3 bbb"
+    """
+
+    return re.sub(r'(\d+)\s+(\d)/(\d)', r'\1$\2/\3', s)
 
 
 def tokenize(s):
@@ -27,4 +38,7 @@ def tokenize(s):
         s = s.replace(unit + '/', unit + ' ')
         s = s.replace(unit + 's/', unit + 's ')
 
-    return filter(None, re.split(r'([,\(\)])?\s*', utils.clumpFractions(s)))
+    return [
+        token for token in re.split(r'([,\(\)])?\s*', clumpFractions(s))
+        if token
+    ]

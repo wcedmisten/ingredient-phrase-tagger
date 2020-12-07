@@ -1,4 +1,4 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python3
 import sys
 
 if len(sys.argv) < 2:
@@ -8,7 +8,7 @@ if len(sys.argv) < 2:
 filename = sys.argv[1]
 
 # load CRF++ output for test data
-with open(filename, 'r') as file:
+with open(filename, 'r', encoding='utf-8') as file:
     sentences = file.read().split('\n\n')
 
 total_sentences = len(sentences)
@@ -43,14 +43,15 @@ for sentence in sentences:
     if total_words_per_sentence == correct_words_per_sentence:
         correct_sentences += 1
 
-print
-print 'Sentence-Level Stats:'
-print '\tcorrect: ', correct_sentences
-print '\ttotal: ', total_sentences
-print '\t% correct: ', 100 * (correct_sentences / float(total_sentences))
+print()
+print('Sentence-Level Stats:')
+print('\tcorrect: ', correct_sentences)
+print('\ttotal: ', total_sentences)
+print('\t% correct: ',
+      "{:.10f}".format(100 * (correct_sentences / total_sentences)))
 
-print
-print 'Word-Level Stats:'
-print '\tcorrect:', correct_words
-print '\ttotal:', total_words
-print '\t% correct:', 100 * (correct_words / float(total_words))
+print()
+print('Word-Level Stats:')
+print('\tcorrect:', correct_words)
+print('\ttotal:', total_words)
+print('\t% correct:', "{:.10f}".format(100 * (correct_words / total_words)))

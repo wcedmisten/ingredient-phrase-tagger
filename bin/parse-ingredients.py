@@ -1,4 +1,4 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python3
 
 import argparse
 import json
@@ -10,12 +10,11 @@ from ingredient_phrase_tagger.training import utils
 
 
 def _exec_crf_test(input_text, model_path):
-    with tempfile.NamedTemporaryFile() as input_file:
+    with tempfile.NamedTemporaryFile(mode='w') as input_file:
         input_file.write(utils.export_data(input_text))
         input_file.flush()
         return subprocess.check_output(
-            ['crf_test', '--verbose=1', '--model', model_path,
-             input_file.name]).decode('utf-8')
+            ['crf_test', '--verbose=1', '--model', model_path, input_file.name])
 
 
 def _convert_crf_output_to_json(crf_output):
@@ -25,7 +24,7 @@ def _convert_crf_output_to_json(crf_output):
 def main(args):
     raw_ingredient_lines = [x for x in sys.stdin.readlines() if x]
     crf_output = _exec_crf_test(raw_ingredient_lines, args.model_file)
-    print _convert_crf_output_to_json(crf_output.split('\n'))
+    print(_convert_crf_output_to_json(crf_output.split('\n')))
 
 
 if __name__ == '__main__':

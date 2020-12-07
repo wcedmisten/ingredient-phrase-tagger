@@ -8,15 +8,15 @@ from ingredient_phrase_tagger.training import partitioner
 class PartitionerTest(unittest.TestCase):
 
     def setUp(self):
-        self.mock_training_file = io.BytesIO()
+        self.mock_training_file = io.StringIO()
         self.mock_training_writer = labelled_data.Writer(
             self.mock_training_file)
-        self.mock_testing_file = io.BytesIO()
+        self.mock_testing_file = io.StringIO()
         self.mock_testing_writer = labelled_data.Writer(self.mock_testing_file)
 
     def test_partition_80_percent_training(self):
         mock_label_reader = labelled_data.Reader(
-            io.BytesIO("""
+            io.StringIO("""
 input,name,qty,range_end,unit,comment
 1 cup foo,foo,1.0,0.0,cup,
 2 drops foz,foz,2.0,0.0,drop,
@@ -45,7 +45,7 @@ input,name,qty,range_end,unit,comment
 
     def test_partition_20_percent_training(self):
         mock_label_reader = labelled_data.Reader(
-            io.BytesIO("""
+            io.StringIO("""
 input,name,qty,range_end,unit,comment
 1 cup foo,foo,1.0,0.0,cup,
 2 drops foz,foz,2.0,0.0,drop,
@@ -74,7 +74,7 @@ input,name,qty,range_end,unit,comment
 
     def test_partition_with_max_labels_discards_labels(self):
         mock_label_reader = labelled_data.Reader(
-            io.BytesIO("""
+            io.StringIO("""
 input,name,qty,range_end,unit,comment
 1 cup foo,foo,1.0,0.0,cup,
 2 drops foz,foz,2.0,0.0,drop,

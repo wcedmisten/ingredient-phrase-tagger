@@ -1,7 +1,8 @@
 import optparse
+import sys
 
-import labelled_data
-import translator
+from ingredient_phrase_tagger.training import labelled_data
+from ingredient_phrase_tagger.training import translator
 
 
 class Cli(object):
@@ -14,10 +15,14 @@ class Cli(object):
         Generates training data in the CRF++ format for the ingredient
         tagging task
         """
-        with open(self.opts.data_path) as data_file:
+        with open(self.opts.data_path, encoding='utf-8') as data_file:
             data_reader = labelled_data.Reader(data_file)
             for row in data_reader:
-                print translator.translate_row(row).encode('utf-8')
+                # Write the utf-8 encoded data directly to stdout instead of using print
+                # because print() will output a bytestring like `b"string"`.
+                sys.stdout.buffer.write(
+                    translator.translate_row(row).encode('utf-8'))
+                sys.stdout.buffer.write(b'\n')
 
     def _parse_args(self, argv):
         """
