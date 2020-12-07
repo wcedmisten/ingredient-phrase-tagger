@@ -17,9 +17,11 @@ def clumpFractions(s):
 def tokenize(s):
     """
     Tokenize on parenthesis, punctuation, spaces and American units followed by a slash.
+
     We sometimes give American units and metric units for baking recipes. For example:
         * 2 tablespoons/30 mililiters milk or cream
         * 2 1/2 cups/300 grams all-purpose flour
+
     The recipe database only allows for one unit, and we want to use the American one.
     But we must split the text on "cups/" etc. in order to pick it up.
     """
