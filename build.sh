@@ -19,9 +19,7 @@ coverage report
 yapf \
   --diff \
   --recursive \
-  ./ \
-  --exclude="third_party/*" \
-  --exclude="build/*"
+  ./
 
 # Run static analysis for Python bugs/cruft.
 pyflakes bin/ ingredient_phrase_tagger/
