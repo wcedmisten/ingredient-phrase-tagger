@@ -34,11 +34,13 @@ def tokenize(s):
     american_units = [
         'cup', 'tablespoon', 'teaspoon', 'pound', 'ounce', 'quart', 'pint'
     ]
+    # The following removes slashes following American units and replaces it with a space.
     for unit in american_units:
         s = s.replace(unit + '/', unit + ' ')
         s = s.replace(unit + 's/', unit + 's ')
 
     return [
-        token for token in re.split(r'([,\(\)])?\s*', clumpFractions(s))
-        if token
+        token.strip()
+        for token in re.split(r'([,()\s]{1})', clumpFractions(s))
+        if token and token.strip()
     ]

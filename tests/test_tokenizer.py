@@ -16,6 +16,31 @@ class TokenizerTest(unittest.TestCase):
             tokens_actual = tokenizer.tokenize(ingredient)
             self.assertEqual(tokens_expected, tokens_actual)
 
+    def test_tokenizer_parens(self):
+        expected = ['2', 'tablespoons', 'milk', '(', 'or', 'cream', ')']
+        tokens_actual = tokenizer.tokenize('2 tablespoons milk (or cream)')
+        self.assertEqual(expected, tokens_actual)
+
+    def test_tokenizer_commas(self):
+        expected = [
+            'Half', 'a', 'vanilla', 'bean', ',', 'split', 'lengthwise', ',',
+            'seeds', 'scraped'
+        ]
+        tokens_actual = tokenizer.tokenize(
+            'Half a vanilla bean, split lengthwise, seeds scraped')
+        self.assertEqual(expected, tokens_actual)
+
+    def test_tokenizer_parens_and_commas(self):
+        expected = [
+            '1', 'cup', 'peeled', 'and', 'cooked', 'fresh', 'chestnuts', '(',
+            'about', '20', ')', ',', 'or', '1', 'cup', 'canned', ',',
+            'unsweetened', 'chestnuts'
+        ]
+        tokens_actual = tokenizer.tokenize(
+            '1 cup peeled and cooked fresh chestnuts (about 20), or 1 cup canned, unsweetened chestnuts'
+        )
+        self.assertEqual(expected, tokens_actual)
+
     def test_tokenizer_expands_unit_abbreviations(self):
         pairs = [
             ('100g melted chocolate', ['100', 'grams', 'melted', 'chocolate']),
