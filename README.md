@@ -79,18 +79,11 @@ docker pull mtlynch/ingredient-phrase-tagger
 ## Quick Start
 
 ```bash
-docker run -it mtlynch/ingredient-phrase-tagger bash
+# add ingredients here, separated by newline
+vim test.txt
 
-# Train a new model
-MODEL_DIR=$(mktemp -d)
-bin/train-prod-model "$MODEL_DIR"
-MODEL_FILE=$(find $MODEL_DIR -name '*.crfmodel')
-
-# Parse some ingredients
-echo '
-2 tablespoons honey
-1/2 cup flour
-Black pepper, to taste' | bin/parse-ingredients.py --model-file $MODEL_FILE
+# should output all ingredients as structured JSON
+docker run --mount type=bind,source="$(pwd)"/ingredients.txt,target=/input/input.txt,readonly wedmisten/ingredients-tagger
 ```
 
 ```text

@@ -21,3 +21,10 @@ ADD . /app
 WORKDIR /app
 
 RUN pip3 install .
+
+RUN mkdir /model
+ENV MODEL_DIR /model
+
+COPY ./trained_model.crfmodel /model/model.crfmodel
+
+CMD exec cat /input/input.txt | bin/parse-ingredients.py --model-file /model/model.crfmodel
